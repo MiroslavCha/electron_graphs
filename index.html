@@ -2,12 +2,39 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Hello World!</title>
+    <script type="text/javascript" src="./node_modules/dygraphs/dygraph-combined-dev.js"></script>
+    <title>Graph example</title>
   </head>
   <body>
-    <h1>Hello World!</h1>
+    <h1>Graph example</h1>
+
     We are using node <script>document.write(process.versions.node)</script>,
     Chromium <script>document.write(process.versions.chrome)</script>,
     and Electron <script>document.write(process.versions.electron)</script>.
+
+    <br />
+    <br />
+    <button id="openFile" onclick="openFile();">Open File</button>
+    <br />
+    <br />
+    <div id="graphdiv2"></div>
+
+    <script>
+	 var remote = require('remote'); 
+	 var dialog = remote.require('dialog'); 
+
+	var fs = require('fs');
+	function openFile () {
+		 dialog.showOpenDialog(function (fileNames) {
+		 	if (fileNames === undefined) return;
+
+			 var fileName = fileNames[0];
+
+			 g2 = new Dygraph(document.getElementById("graphdiv2"), fileName, { });			 
+		     	
+		 }); 
+	}
+
+    </script>
   </body>
 </html>
