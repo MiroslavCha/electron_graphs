@@ -1,40 +1,107 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8">
-    <script type="text/javascript" src="./node_modules/dygraphs/dygraph-combined-dev.js"></script>
-    <title>Graph example</title>
-  </head>
-  <body>
-    <h1>Graph example</h1>
+    <title>Photon</title>
 
-    We are using node <script>document.write(process.versions.node)</script>,
-    Chromium <script>document.write(process.versions.chrome)</script>,
-    and Electron <script>document.write(process.versions.electron)</script>.
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/photon.min.css">
 
-    <br />
-    <br />
-    <button id="openFile" onclick="openFile();">Open File</button>
-    <br />
-    <br />
-    <div id="graphdiv2"></div>
-
+    <!-- Javascript -->
+    <script src="js/menu.js" charset="utf-8"></script>
     <script>
-	 var remote = require('remote'); 
-	 var dialog = remote.require('dialog'); 
-
-	var fs = require('fs');
-	function openFile () {
-		 dialog.showOpenDialog(function (fileNames) {
-		 	if (fileNames === undefined) return;
-
-			 var fileName = fileNames[0];
-
-			 g2 = new Dygraph(document.getElementById("graphdiv2"), fileName, { });			 
-		     	
-		 }); 
-	}
+    function myFunction(id) {
+       var active = document.getElementsByClassName("nav-group-item active");
+       active[0].className = "nav-group-item";
+       id.className = "nav-group-item active";
+       /**if (id.id == "Home")
+        document.getElementById("leftPane").innerHTML='<h1> Graph Evaluation </h1>';
+       if (id.id == "GraphFile")
+        document.getElementById("leftPane").innerHTML='<object type="text/html" data="html/graph.html" ></object>';
+       if (id.id == "GraphGen")
+         document.getElementById("leftPane").innerHTML='<object type="text/html" data="html/graphGen.html" ></object>';
+       if (id.id == "WebGL")
+        document.getElementById("leftPane").innerHTML='<object type="text/html" data="html/webGL.html" ></object>';
+        **/
+    }
 
     </script>
+
+  </head>
+  <body>
+    <div class="window">
+       <div class="window-content">
+         <div class="pane-group">
+           <div class="pane pane-sm sidebar">
+             <nav class="nav-group">
+               <h5 class="nav-group-title">Favorites</h5>
+               <a id="Home" class="nav-group-item active" onclick="myFunction(this)">
+                 <span class="icon icon-home" ></span>
+                 Home
+               </a>
+               <a href="html/graph.html" target="leftPane" id="GraphFile" class="nav-group-item" onclick="myFunction(this)">
+                 <span class="icon icon-download"></span>
+                 Graph from file
+               </a>
+              <a href="html/graphGen.html" target="leftPane" id="GraphGen" class="nav-group-item" onclick="myFunction(this)">
+                 <span class="icon icon-folder"></span>
+                 Generated graph
+              </a>
+              <a href="html/webGL.html" target="leftPane" id="WebGL" class="nav-group-item" onclick="myFunction(this)">
+                 <span class="icon icon-signal"></span>
+                 WebGL
+              </a>
+              <a class="nav-group-item" onclick="myFunction(this)">
+                 <span class="icon icon-print"></span>
+                 Applications
+              </a>
+              <a class="nav-group-item" onclick="myFunction(this)">
+                 <span class="icon icon-cloud"></span>
+                 Desktop
+              </a>
+             </nav>
+
+             <nav class="nav-group">
+               <h5 class="nav-group-title">Tags</h5>
+               <span class="nav-group-item" href="#">
+                 <span class="icon icon-record" style="color:#fc605b"></span>
+                 Red
+               </span>
+               <span class="nav-group-item" href="#">
+                 <span class="icon icon-record" style="color:#fdbc40"></span>
+                 Orange
+               </span>
+               <span class="nav-group-item" href="#">
+                 <span class="icon icon-record" style="color:#34c84a"></span>
+                 Green
+               </span>
+               <span class="nav-group-item" href="#">
+                 <span class="icon icon-record" style="color:#57acf5"></span>
+                 Blue
+               </span>
+             </nav>
+             <nav class="nav-group">
+               <h5 class="nav-group-title">Devices</h5>
+               <span class="nav-group-item">
+                 <span class="icon icon-drive"></span>
+                 Backup disk
+               </span>
+               <span class="nav-group-item">
+                 <span class="icon icon-drive"></span>
+                 Backup disk
+               </span>
+             </nav>
+           </div>
+           <frame name="leftPane" class="pane">
+             <h1> Graph Evaluation </h1>
+
+               We are using node <script>document.write(process.versions.node)</script>,
+               Chromium <script>document.write(process.versions.chrome)</script>,
+               and Electron <script>document.write(process.versions.electron)</script>.
+
+
+           </frame>
+         </div>
+       </div>
+     </div>
   </body>
 </html>

@@ -1,0 +1,37 @@
+<html>
+<head>
+  <title>Second page</title>
+</head>
+<body>
+
+  We are using node <script>document.write(process.versions.node)</script>,
+  Chromium <script>document.write(process.versions.chrome)</script>,
+  and Electron <script>document.write(process.versions.electron)</script>.
+
+<h1> Graph from File</h1>
+
+<script type="text/javascript" src="../node_modules/dygraphs/dygraph-combined-dev.js"></script>
+
+<br />
+ <br />
+ <button id="openFile" onclick="openFile();">Open File</button>
+ <br />
+ <br />
+ <div id="graphdiv2"></div>
+
+ <script>
+var remote = require('remote');
+var dialog = remote.require('dialog');
+var fs = require('fs');
+function openFile () {
+  dialog.showOpenDialog(function (fileNames) {
+   if (fileNames === undefined) return;
+    var fileName = fileNames[0];
+    g2 = new Dygraph(document.getElementById("graphdiv2"), fileName, { });
+
+  });
+}
+ </script>
+
+</body>
+</html>
