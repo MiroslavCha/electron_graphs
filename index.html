@@ -7,19 +7,24 @@
     <link rel="stylesheet" href="css/photon.min.css">
     <script>
     function myFunction(id) {
+      console.log("Button clicked");
        var active = document.getElementsByClassName("nav-group-item active");
        active[0].className = "nav-group-item";
        id.className = "nav-group-item active";
 
+       var leftView = document.getElementById("leftView");
        if (id.id == "Home")
-        document.getElementById("leftPane").innerHTML='<h1> Graph Evaluation </h1>';
+        leftView.loadURL("file:///home/chm/workspace/electron-quick-start/html/home.html");
        if (id.id == "GraphFile")
-        document.getElementById("leftPane").innerHTML='<webview id="graphView" style="height:800px;" src="html/graph.html" nodeintegration></webview>';
+        leftView.loadURL("file:///home/chm/workspace/electron-quick-start/html/graph.html");
        if (id.id == "GraphGen")
-         document.getElementById("leftPane").innerHTML='<webview id="graphGenView" style="height:800px;" src="html/graphGen.html" nodeintegration disablewebsecurity></webview>';
+         leftView.loadURL("file:///home/chm/workspace/electron-quick-start/html/graphGen.html");
        if (id.id == "WebGL")
-        document.getElementById("leftPane").innerHTML='<webview style="height:800px;" src="http://www.yasiv.com/graphs#Bai/rw5151"></webview>';
+        leftView.loadURL("http://www.yasiv.com/graphs#Bai/rw5151");
 
+        leftView.addEventListener("dom-ready", function() {
+          leftView.openDevTools();
+        });
     }
 
     </script>
@@ -90,10 +95,7 @@
              </nav>
            </div>
            <div id="leftPane" class="pane">
-             <h1> Graph Evaluation </h1>
-               We are using node <script>document.write(process.versions.node)</script>,
-               Chromium <script>document.write(process.versions.chrome)</script>,
-               and Electron <script>document.write(process.versions.electron)</script>.
+             <webview id="leftView" style="height:900px;" src="html/home.html" nodeintegration></webview>';
            </div>
          </div>
        </div>

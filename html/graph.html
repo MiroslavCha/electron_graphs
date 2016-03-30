@@ -3,22 +3,27 @@
 <script type="text/javascript" src="../node_modules/dygraphs/dygraph-combined-dev.js"></script>
 
 <br />
- <br />
- <button id="openFile" onclick="openFile()">Open File</button>
- <br />
- <br />
- <div id="graphdiv2"></div>
+<br />
+<button id="openFile" onclick="openFile()">Open File</button>
+<div id="genTime">Time to generate</div>
+<br />
+<br />
+<div id="graphdiv2" style="height: 700px; width: 100%;"></div>
 
- <script>
+<script>
 var remote = require('remote');
 var dialog = remote.require('dialog');
 var fs = require('fs');
 function openFile () {
   dialog.showOpenDialog(function (fileNames) {
-   if (fileNames === undefined) return;
+    if (fileNames === undefined) return;
     var fileName = fileNames[0];
+    var startGen = new Date();
     g2 = new Dygraph(document.getElementById("graphdiv2"), fileName, { });
+    var endGen = new Date();
+    var diff = endGen - startGen;
 
+    document.getElementById("genTime").innerHTML= diff.toString() + "ms";
   });
 }
- </script>
+</script>
