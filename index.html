@@ -5,23 +5,21 @@
 
     <!-- Stylesheets -->
     <link rel="stylesheet" href="css/photon.min.css">
-
-    <!-- Javascript -->
-    <script src="js/menu.js" charset="utf-8"></script>
     <script>
     function myFunction(id) {
        var active = document.getElementsByClassName("nav-group-item active");
        active[0].className = "nav-group-item";
        id.className = "nav-group-item active";
-       /**if (id.id == "Home")
+
+       if (id.id == "Home")
         document.getElementById("leftPane").innerHTML='<h1> Graph Evaluation </h1>';
        if (id.id == "GraphFile")
-        document.getElementById("leftPane").innerHTML='<object type="text/html" data="html/graph.html" ></object>';
+        document.getElementById("leftPane").innerHTML='<webview id="graphView" style="height:800px;" src="html/graph.html" nodeintegration></webview>';
        if (id.id == "GraphGen")
-         document.getElementById("leftPane").innerHTML='<object type="text/html" data="html/graphGen.html" ></object>';
+         document.getElementById("leftPane").innerHTML='<webview id="graphGenView" style="height:800px;" src="html/graphGen.html" nodeintegration disablewebsecurity></webview>';
        if (id.id == "WebGL")
-        document.getElementById("leftPane").innerHTML='<object type="text/html" data="html/webGL.html" ></object>';
-        **/
+        document.getElementById("leftPane").innerHTML='<webview style="height:800px;" src="http://www.yasiv.com/graphs#Bai/rw5151"></webview>';
+
     }
 
     </script>
@@ -38,15 +36,15 @@
                  <span class="icon icon-home" ></span>
                  Home
                </a>
-               <a href="html/graph.html" target="leftPane" id="GraphFile" class="nav-group-item" onclick="myFunction(this)">
+               <a href="#" id="GraphFile" class="nav-group-item" onclick="myFunction(this)">
                  <span class="icon icon-download"></span>
                  Graph from file
                </a>
-              <a href="html/graphGen.html" target="leftPane" id="GraphGen" class="nav-group-item" onclick="myFunction(this)">
+              <a href="#" id="GraphGen" class="nav-group-item" onclick="myFunction(this)">
                  <span class="icon icon-folder"></span>
                  Generated graph
               </a>
-              <a href="html/webGL.html" target="leftPane" id="WebGL" class="nav-group-item" onclick="myFunction(this)">
+              <a href="#" id="WebGL" class="nav-group-item" onclick="myFunction(this)">
                  <span class="icon icon-signal"></span>
                  WebGL
               </a>
@@ -91,15 +89,12 @@
                </span>
              </nav>
            </div>
-           <frame name="leftPane" class="pane">
+           <div id="leftPane" class="pane">
              <h1> Graph Evaluation </h1>
-
                We are using node <script>document.write(process.versions.node)</script>,
                Chromium <script>document.write(process.versions.chrome)</script>,
                and Electron <script>document.write(process.versions.electron)</script>.
-
-
-           </frame>
+           </div>
          </div>
        </div>
      </div>

@@ -1,20 +1,10 @@
-<html>
-<head>
-  <title>Second page</title>
-</head>
-<body>
-
-  We are using node <script>document.write(process.versions.node)</script>,
-  Chromium <script>document.write(process.versions.chrome)</script>,
-  and Electron <script>document.write(process.versions.electron)</script>.
-
 <h1> Graph from File</h1>
 
 <script type="text/javascript" src="../node_modules/dygraphs/dygraph-combined-dev.js"></script>
 
 <br />
  <br />
- <button id="openFile" onclick="openFile();">Open File</button>
+ <button id="openFile" onclick="openFile()">Open File</button>
  <br />
  <br />
  <div id="graphdiv2"></div>
@@ -32,6 +22,3 @@ function openFile () {
   });
 }
  </script>
-
-</body>
-</html>

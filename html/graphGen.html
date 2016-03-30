@@ -1,1 +1,109 @@
+<html>
+<body>
+
 <h1> Generated Graph </h1>
+
+We are using node <script>document.write(process.versions.node)</script>,
+Chromium <script>document.write(process.versions.chrome)</script>,
+and Electron <script>document.write(process.versions.electron)</script>.
+
+<br/>
+<select id = "dps" style = "margin-bottom: 0px">
+  <option value=100 >100 Data Points</option>
+  <option value=1000>1000 Data Points</option>
+  <option value=5000>5000 Data Points</option>
+  <option value=10000>10000 Data Points</option>
+  <option value=30000>30000 Data Points</option>
+  <option value=50000 >50000 Data Points</option>
+
+  <option value=80000>80000 Data Points</option>
+  <option value=100000 selected="selected">100000 Data Points</option>
+</select>
+
+<br/>
+<br/>
+
+<button id="id1" onclick="gen();"> Generate</button>
+<div id="genTime"> 0ms</div>
+<button id="id2" xonclick="hello()">Render</button>
+<div id= "renderTime"> 0ms</div>
+<br/>
+<br/>
+
+<script>
+//var webview = document.getElementById("graphGenView");
+openDevTools();
+addEventListener('console-message', function(e) {
+  console.log('Guest page logged a message:', e.message);
+});
+
+function hello() {
+  console.log("Hello all");
+}
+
+var el = document.getElementById('id2')
+alert(el.length)
+el.onclick = function() {
+  console.log("Hello all");
+}
+
+</script>
+
+<script>
+
+
+  // number of dataPoints by default.
+var pointCnt = 100000;
+
+function gen() {
+  alert('som tu!');
+  var webview = document.getElementById("graphGenView");
+  webview.openDevTools();
+
+  var e = document.getElementById("dsp");
+
+  var startGen = new Date();
+  var pointCnt = e.options[e.selectedIndex].value;
+
+  var limit = pointCnt;
+
+   var y = 0;
+   var data = [];
+   var dataSeries = { type: "line" };
+   var dataPoints = [];
+   for (var i = 0; i < limit; i += 1) {
+     y += (Math.random() * 10 - 5);
+     dataPoints.push({
+       x: i,
+       y: y
+     });
+   }
+   dataSeries.dataPoints = dataPoints;
+   data.push(dataSeries);
+
+   var performanceChart = new CanvasJS.Chart("container",
+   {
+     zoomEnabled: true,
+     panEnabled: true,
+     title:{
+       text: "Try Zooming and Panning"
+     },
+     legend: {
+       horizontalAlign: "right",
+       verticalAlign: "center"
+     },
+     axisY:{
+       includeZero: false
+      },
+       data: data,  // random generator below
+
+     });
+   var endGen = new Date();
+
+   document.getElementById("genTime").innerHTML= endGen - startGen + "ms";
+}
+
+</script>
+
+</body>
+</html>
