@@ -1,0 +1,124 @@
+<html>
+<body>
+
+<h1> Generated Graph </h1>
+
+<script type="text/javascript" src="http://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
+<div style=" display: inline-block;">
+<br/>
+<select id="selection" style = "margin-bottom: 0px">
+<option value=1000 selected="selected">80 Signals, 50 ms, 1000 Data Points</option>
+<option value=2000>40 Signals, 50 ms, 2000 Data Points</option>
+
+</select>
+
+<button id="id1" onclick="init()"> Init</button>
+<span id="initTime">0 ms</span>
+</div>
+</br>
+<button id="id2" onclick="start()"> Start</button>
+<button id="id3" onclick="stopRen()">Stop</button>
+<span id="renderTime">0 ms</span>
+<br/>
+<br/>
+
+<div id="container" style="height: 700px; width: 70%;"></div>
+
+<script>
+function init()
+{
+  var e = document.getElementById("selection");
+  var pointCnt = parseInt(e.options[e.selectedIndex].value);
+  document.pointCnt = pointCnt;
+
+  var curveCnt;
+
+  if (pointCnt == 1000) {
+    curveCnt = 80;
+  }
+  else {
+    curveCnt = 40;
+  }
+
+  document.curveCnt = curveCnt;
+
+  var data = [];
+
+  for (var j = 0; j < curveCnt; j+= 1)
+  {
+    var y = 0;
+    var dataSeries = { type: "line" };
+    var dataPoints = [];
+    for (var i = 0; i < pointCnt; i += 1) {
+      y += (Math.random() * 10 - 5);
+      dataPoints.push({
+        x: i,
+        y: y
+      });
+    }
+
+    dataSeries.dataPoints = dataPoints;
+    data.push(dataSeries);
+  }
+
+  document.performanceChart = new CanvasJS.Chart("container",
+  {
+    zoomEnabled: true,
+    panEnabled: true,
+    title:{
+      text: "Try Zooming and Panning"
+    },
+    legend: {
+      horizontalAlign: "right",
+      verticalAlign: "center"
+    },
+    axisY:{
+      includeZero: false
+     },
+    data: data
+    });
+
+    var startRender = new Date();
+    document.performanceChart.render();
+    var endRender = new Date();
+
+    var diff = endRender - startRender;
+    document.getElementById("initTime").innerHTML= diff.toString() + "ms";
+}
+
+function start()
+{
+  init();
+  document.interval = setInterval(render, 100);
+}
+
+function stopRen()
+{
+  clearInterval(document.interval);
+}
+
+function render()
+{
+  document.stop = false;
+
+    for (var j = 0; j < document.curveCnt; j+= 1)
+    {
+      var y = 0;
+      for (var i = 0; i < document.pointCnt; i += 1) {
+        y += (Math.random() * 10 - 5);
+        document.performanceChart.options.data[j].dataPoints[i].y = y;
+      }
+    }
+
+    var startRender = new Date();
+    document.performanceChart.render();
+    var endRender = new Date();
+
+    var diff = endRender - startRender;
+    document.getElementById("renderTime").innerHTML= diff.toString() + "ms";
+}
+
+</script>
+</body>
+</html>

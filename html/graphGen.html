@@ -3,8 +3,9 @@
 
 <h1> Generated Graph </h1>
 
-<script type="text/javascript" src="../node_modules/canvasjs/dist/canvasjs.js"></script>
+<script type="text/javascript" src="http://canvasjs.com/assets/script/canvasjs.min.js"></script>
 
+<div style=" display: inline-block;">
 <br/>
 <select id = "dps" style = "margin-bottom: 0px">
 <option value=100 >100 Data Points</option>
@@ -13,22 +14,18 @@
 <option value=10000>10000 Data Points</option>
 <option value=30000>30000 Data Points</option>
 <option value=50000 >50000 Data Points</option>
-
 <option value=80000>80000 Data Points</option>
 <option value=100000 selected="selected">100000 Data Points</option>
 </select>
-
-<br/>
-<br/>
-
 <button id="id1" onclick="gen()"> Generate</button>
-<div id="genTime"> 0ms</div>
+<span id="genTime"> 0ms</span>
 <button id="id2" onclick="draw()">Render</button>
-<div id= "renderTime"> 0ms</div>
+<span id= "renderTime"> 0ms</span>
+</div>
 <br/>
 <br/>
 
-<div id="container" style="height: 800px; width: 100%;"></div>
+<div id="container" style="height: 700px; width: 70%;"></div>
 
 <script>
 var pointCnt = 100000;
@@ -56,7 +53,7 @@ var startGen = new Date();
 
  document.performanceChart = new CanvasJS.Chart("container",
  {
-   zoomEnabled: false,
+   zoomEnabled: true,
    panEnabled: true,
    title:{
      text: "Try Zooming and Panning"
@@ -68,7 +65,7 @@ var startGen = new Date();
    axisY:{
      includeZero: false
     },
-     data: data,
+     data: data
    });
  var endGen = new Date();
  var diff = endGen - startGen;

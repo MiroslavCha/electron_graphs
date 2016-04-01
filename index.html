@@ -14,11 +14,13 @@
 
        var leftView = document.getElementById("leftView");
        if (id.id == "Home")
-        leftView.loadURL("file:///home/chm/workspace/electron-quick-start/html/home.html");
+        leftView.loadURL("file://C:\\Users\\Cmi\\electron\\html\\home.html");
        if (id.id == "GraphFile")
-        leftView.loadURL("file:///home/chm/workspace/electron-quick-start/html/graph.html");
+        leftView.loadURL("file://C:\\Users\\Cmi\\electron\\html\\graph.html");
        if (id.id == "GraphGen")
-         leftView.loadURL("file:///home/chm/workspace/electron-quick-start/html/graphGen.html");
+         leftView.loadURL("file://C:\\Users\\Cmi\\electron\\html\\graphGen.html");
+      if (id.id == "Simulation")
+         leftView.loadURL("file://C:\\Users\\Cmi\\electron\\html\\simulation.html");
        if (id.id == "WebGL")
         leftView.loadURL("http://www.yasiv.com/graphs#Bai/rw5151");
 
@@ -49,13 +51,13 @@
                  <span class="icon icon-folder"></span>
                  Generated graph
               </a>
-              <a href="#" id="WebGL" class="nav-group-item" onclick="myFunction(this)">
+              <a href="#" id="Simulation" class="nav-group-item" onclick="myFunction(this)">
                  <span class="icon icon-signal"></span>
-                 WebGL
+                 Simulation
               </a>
-              <a class="nav-group-item" onclick="myFunction(this)">
+              <a href="#" id="WebGL" class="nav-group-item" onclick="myFunction(this)">
                  <span class="icon icon-print"></span>
-                 Applications
+                 WebGL
               </a>
               <a class="nav-group-item" onclick="myFunction(this)">
                  <span class="icon icon-cloud"></span>
