@@ -1,0 +1,39 @@
+<html>
+<body>
+
+<h1> TCP/IP Communication </h1>
+<button onclick="start()"> Start server</button>
+
+<div id="container"></div>
+<div id="container2"></div>
+
+<script>
+function start()
+{
+  var PORT = 8000;
+  var HOST = '127.0.0.1';
+
+  var dgram = require('dgram');
+  var server = dgram.createSocket('udp4');
+
+  server.on('listening', function () {
+      var address = server.address();
+
+      document.getElementById("container").innerHTML = 'UDP Server listening on ' + address.address + ":" + address.port;
+
+      console.log('UDP Server listening on ' + address.address + ":" + address.port);
+  });
+
+  server.on('message', function (message, remote) {
+    document.getElementById("container2").innerHTML = remote.address + ':' + remote.port +' - ' + message;
+      console.log(remote.address + ':' + remote.port +' - ' + message);
+
+  });
+
+  server.bind(PORT, HOST);
+}
+
+</script>
+
+</body>
+</html>

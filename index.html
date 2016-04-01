@@ -13,14 +13,38 @@
        id.className = "nav-group-item active";
 
        var leftView = document.getElementById("leftView");
+
+       var homePath;
+       var graphPath;
+       var graphGenPath;
+       var simPath;
+       var commPath;
+       if (/^win/.test(process.platform))
+       {
+         homePath = "file://C:\\Users\\Cmi\\electron\\html\\home.html";
+         graphPath = "file://C:\\Users\\Cmi\\electron\\html\\graph.html";
+         graphGenPath = "file://C:\\Users\\Cmi\\electron\\html\\graphGen.html";
+         simPath = "file://C:\\Users\\Cmi\\electron\\html\\simulation.html";
+         commPath = "file://C:\\Users\\Cmi\\electron\\html\\communication.html";
+       }
+       else {
+         homePath = "file:///home/chm/workspace/electron-quick-start/html/home.html";
+         graphPath = "file:///home/chm/workspace/electron-quick-start/html/graph.html";
+         graphGenPath = "file:///home/chm/workspace/electron-quick-start/html/graphGen.html";
+         simPath = "file:///home/chm/workspace/electron-quick-start/html/simulation.html";
+         commPath = "file:///home/chm/workspace/electron-quick-start/html/communication.html";
+       }
+
        if (id.id == "Home")
-        leftView.loadURL("file://C:\\Users\\Cmi\\electron\\html\\home.html");
+        leftView.loadURL(homePath);
        if (id.id == "GraphFile")
-        leftView.loadURL("file://C:\\Users\\Cmi\\electron\\html\\graph.html");
+        leftView.loadURL(graphPath);
        if (id.id == "GraphGen")
-         leftView.loadURL("file://C:\\Users\\Cmi\\electron\\html\\graphGen.html");
+         leftView.loadURL(graphGenPath);
       if (id.id == "Simulation")
-         leftView.loadURL("file://C:\\Users\\Cmi\\electron\\html\\simulation.html");
+         leftView.loadURL(simPath);
+      if (id.id == "Communication")
+         leftView.loadURL(commPath);
        if (id.id == "WebGL")
         leftView.loadURL("http://www.yasiv.com/graphs#Bai/rw5151");
 
@@ -59,9 +83,9 @@
                  <span class="icon icon-print"></span>
                  WebGL
               </a>
-              <a class="nav-group-item" onclick="myFunction(this)">
+              <a href="#" id="Communication" class="nav-group-item" onclick="myFunction(this)">
                  <span class="icon icon-cloud"></span>
-                 Desktop
+                 Communication
               </a>
              </nav>
 
